@@ -6,41 +6,26 @@ services:
     image: mongo
     restart: always
     ports:
-      - 27027:27017
+      - 4400:27017
     environment:
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=finance
     volumes:
       - mongo-data:/data/db
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    depends_on:
-      - mongo
-    ports:
-      - 8081:8081
-    environment:
-      - ME_CONFIG_BASICAUTH=true
-      - ME_CONFIG_BASICAUTH_USERNAME=himanshu
-      - ME_CONFIG_BASICAUTH_PASSWORD=admin@123
-
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=finance
-      - ME_CONFIG_MONGODB_URL=mongodb://root:finance@mongo:27017/
-
   server:
     build: .
-    image: finance-help-mate-backend:latest
+    image: finance-backend:latest
     restart: always
     depends_on:
       - mongo
     ports:
-      - 5000:5000
+      - 4000:4000
     env_file:
       - .env
     environment:
       - DB_URL=mongodb://root:finance@mongo:27017/finance
+      - DOTENV_KEY=dotenv://:key_0fab899c8f32b10ac700d5e2304d488c251b9dd2de08d29a7e36af7061adf57b@dotenv.org/vault/.env.vault?environment=development
 
 volumes:
   mongo-data:

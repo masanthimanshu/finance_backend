@@ -1,0 +1,38 @@
+entity-relationship-diagram
+
+user [icon: user, color: teal] {
+    id string pk
+    name string
+    code string
+    phone number
+    income number
+    spending object
+    isVerified boolean
+}
+
+otp [icon: code, color: green] {
+    id string pk
+    user string
+    value int
+}
+
+spending [icon: chart, color: teal] {
+    id string pk
+    expense number
+    savings number
+    investment number
+}
+
+transaction [icon: ticket, color: navy] {
+    id string pk
+    user string
+    message string
+    amount number
+    category string
+    subCategory string
+    time timestamp
+}
+
+user.id <> otp.user
+user.spending <> spending
+transaction.user <> user.id

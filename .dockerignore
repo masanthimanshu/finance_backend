@@ -4,3 +4,10 @@ README.md
 node_modules
 .eraserdiagram
 insomnia-collection.json
+
+# Dotenv Vault
+
+.env*
+.flaskenv*
+!.env.vault
+!.env.project
