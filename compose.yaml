@@ -21,8 +21,6 @@ services:
       - mongo
     ports:
       - 4000:4000
-    env_file:
-      - .env
     environment:
       - DB_URL=mongodb://root:finance@mongo:27017/finance
       - DOTENV_KEY=dotenv://:key_0fab899c8f32b10ac700d5e2304d488c251b9dd2de08d29a7e36af7061adf57b@dotenv.org/vault/.env.vault?environment=development
