@@ -1,4 +1,4 @@
-import { HttpRequests } from "../../network/requests.js";
+import { getRequest } from "../../network/requests.js";
 import { userModel } from "../../database/user_model.js";
 import { otpModel } from "../../database/otp_model.js";
 import { OtpVerId } from "../../utils/otp_ver_id.js";
@@ -8,7 +8,6 @@ const authKeyID = process.env.AUTH_KEY_ID;
 const authKeyUrl = process.env.AUTH_KEY_URL;
 
 export class AuthController {
-  #request = new HttpRequests();
   #verID = new OtpVerId();
   #token = new Tokens();
 
@@ -23,7 +22,7 @@ export class AuthController {
       { new: true, upsert: true }
     );
 
-    await this.#request.getRequest(
+    await getRequest(
       `${url}&country_code=${country}&mobile=${phone}&otp=${otp}`
     );
 

@@ -8,19 +8,14 @@ export const routes = Router();
 const controller = new TransactionController();
 
 routes.post("/add-transaction", (req, res) => {
-  const schema = z.object({
-    amount: z.number(),
-    message: z.string(),
-    category: z.string(),
-    subCategory: z.string(),
-  });
+  const schema = z.object({ input: z.string() }).strict();
 
   const { authorization } = req.headers;
   const user = token.decodeAuth(authorization);
 
   try {
-    schema.strict().parse(req.body);
-    controller.addTransaction(res, user, req.body);
+    const data = schema.parse(req.body);
+    controller.addTransaction(res, user.data, data.input);
   } catch {
     return res.status(400).send({ error: "Missing required fields" });
   }

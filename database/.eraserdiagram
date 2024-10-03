@@ -26,7 +26,7 @@ spending [icon: chart, color: teal] {
 transaction [icon: ticket, color: navy] {
     id string pk
     user string
-    message string
+    input string
     amount number
     category string
     subCategory string

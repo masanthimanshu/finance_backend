@@ -19,7 +19,7 @@ routes.post("/add-spending", (req, res) => {
 
   try {
     schema.strict().parse(req.body);
-    controller.addSpending(res, user, req.body);
+    controller.addSpending(res, user.data, req.body);
   } catch {
     return res.status(400).send({ error: "Missing required fields" });
   }
