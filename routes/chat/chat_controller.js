@@ -1,13 +1,13 @@
 import { workerAi } from "../../cloudflare/worker_ai.js";
-import { transactionModel } from "../../database/transaction_model.js";
+import { chatModel } from "../../database/chat_model.js";
 
-export class TransactionController {
-  addTransaction = async (res = Response, user, data) => {
+export class ChatController {
+  addChat = async (res = Response, user, data) => {
     try {
       const output = await workerAi(data);
       const arr = output.split("->");
 
-      await new transactionModel({
+      await new chatModel({
         user,
         input: data,
         category: arr[0].trim(),

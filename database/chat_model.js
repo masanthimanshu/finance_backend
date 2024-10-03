@@ -16,4 +16,4 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-export const transactionModel = model("transaction", schema);
+export const chatModel = model("chat", schema);
