@@ -9,9 +9,9 @@ const controller = new SpendingController();
 
 routes.post("/add-spending", (req, res) => {
   const schema = z.object({
-    expense: z.string(),
-    savings: z.string(),
-    investment: z.string(),
+    expense: z.number(),
+    savings: z.number(),
+    investment: z.number(),
   });
 
   const { authorization } = req.headers;
