@@ -5,8 +5,6 @@ user [icon: user, color: teal] {
     name string
     code string
     phone number
-    income number
-    spending object
     isVerified boolean
 }
 
@@ -16,17 +14,19 @@ otp [icon: code, color: green] {
     value int
 }
 
-spending [icon: chart, color: teal] {
+profile [icon: chart, color: purple] {
     id string pk
+    user string
+    income number
     expense number
     savings number
     investment number
 }
 
-transaction [icon: ticket, color: navy] {
+chat [icon: ticket, color: navy] {
     id string pk
-    user string
     input string
+    user string
     amount number
     category string
     subCategory string
@@ -34,5 +34,5 @@ transaction [icon: ticket, color: navy] {
 }
 
 user.id <> otp.user
-user.spending <> spending
-transaction.user <> user.id
+chat.user <> user.id
+profile.user <> user.id
