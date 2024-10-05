@@ -14,8 +14,6 @@ const middleware = new Middleware();
 app.use(cors());
 app.use(express.json());
 
-route.chatStream(server);
-
 app.use("/secure", middleware.jwt);
 app.use("/account", middleware.account);
 
@@ -27,7 +25,7 @@ app.use("/jwt", route.jwtRoutes);
 app.use("/account/auth", route.authRoutes);
 
 app.use("/secure/chat", route.chatRoutes);
-app.use("/secure/spending", route.spendingRoutes);
+app.use("/secure/profile", route.profileRoutes);
 
 app.listen(process.env.PORT, () => console.log("App Started"));
 
