@@ -42,7 +42,7 @@ routes.get("/limit-chat", async (req, res) => {
 
     const chatData = await chatModel
       .find({ user: data })
-      .sort({ updatedAt: 1 })
+      .sort({ updatedAt: -1 })
       .limit(parseInt(limit));
 
     return res.send({ chatData: chatData });
