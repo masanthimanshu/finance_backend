@@ -14,15 +14,6 @@ otp [icon: code, color: green] {
     value int
 }
 
-profile [icon: chart, color: purple] {
-    id string pk
-    user string
-    income number
-    expense number
-    savings number
-    investment number
-}
-
 chat [icon: ticket, color: navy] {
     id string pk
     input string
@@ -35,4 +26,3 @@ chat [icon: ticket, color: navy] {
 
 user.id <> otp.user
 chat.user <> user.id
-profile.user <> user.id
