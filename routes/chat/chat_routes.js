@@ -26,7 +26,7 @@ routes.get("/get-chat", async (req, res) => {
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
 
-  const chatData = await chatModel.find({ user: data }).sort({ updatedAt: 0 });
+  const chatData = await chatModel.find({ user: data }).sort({ updatedAt: -1 });
 
   res.send({ chatData: chatData });
 });
