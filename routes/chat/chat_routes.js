@@ -26,13 +26,13 @@ routes.get("/get-chat", async (req, res) => {
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
 
-  const chatData = await chatModel.find({ user: data }).sort({ updatedAt: 1 });
+  const chatData = await chatModel.find({ user: data }).sort({ updatedAt: 0 });
 
   res.send({ chatData: chatData });
 });
 
 routes.get("/limit-chat", async (req, res) => {
-  const schema = z.object({ limit: z.number() }).strict();
+  const schema = z.object({ limit: z.string() }).strict();
 
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
@@ -43,7 +43,7 @@ routes.get("/limit-chat", async (req, res) => {
     const chatData = await chatModel
       .find({ user: data })
       .sort({ updatedAt: 1 })
-      .limit(limit);
+      .limit(parseInt(limit));
 
     return res.send({ chatData: chatData });
   } catch {
