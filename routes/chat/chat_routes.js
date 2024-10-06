@@ -50,3 +50,15 @@ routes.get("/limit-chat", async (req, res) => {
     return res.status(400).send({ error: "Missing required fields" });
   }
 });
+
+routes.delete("/delete-chat", async (req, res) => {
+  const schema = z.object({ chatId: z.string() }).strict();
+
+  try {
+    const { chatId } = schema.parse(req.query);
+    await chatModel.findByIdAndDelete(chatId);
+    res.send({ message: "Data deleted successfully" });
+  } catch {
+    return res.status(400).send({ error: "Missing required fields" });
+  }
+});
