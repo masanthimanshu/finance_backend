@@ -3,6 +3,7 @@ import { Types, Schema, model } from "mongoose";
 const schema = new Schema({
   user: {
     ref: "user",
+    unique: true,
     type: Types.ObjectId,
     required: [true, "User Id is required"],
   },
