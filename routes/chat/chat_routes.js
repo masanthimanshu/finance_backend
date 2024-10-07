@@ -45,10 +45,17 @@ routes.get("/limit-chat", async (req, res) => {
       .sort({ updatedAt: -1 })
       .limit(parseInt(limit));
 
-    return res.send({ chatData: chatData });
+    res.send({ chatData: chatData });
   } catch {
     return res.status(400).send({ error: "Missing required fields" });
   }
+});
+
+routes.get("/total-amount", async (req, res) => {
+  const { authorization } = req.headers;
+  const { data } = token.decodeAuth(authorization);
+
+  controller.totalAmount(res, data);
 });
 
 routes.delete("/delete-chat", async (req, res) => {

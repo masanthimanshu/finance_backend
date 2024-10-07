@@ -12,10 +12,10 @@ routes.get("/refresh", (req, res) => {
   }
 
   if (token.verifyRefresh(refresh)) {
-    const uid = token.decodeRefresh(refresh);
+    const { data } = token.decodeRefresh(refresh);
 
-    const authToken = token.generateAuth(uid.data);
-    const refreshToken = token.generateRefresh(uid.data);
+    const authToken = token.generateAuth(data);
+    const refreshToken = token.generateRefresh(data);
 
     res.send({ status: "Success", authToken, refreshToken });
   } else {
