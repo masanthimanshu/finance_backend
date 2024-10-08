@@ -31,26 +31,6 @@ routes.get("/get-chat", async (req, res) => {
   res.send({ chatData: chatData });
 });
 
-routes.get("/limit-chat", async (req, res) => {
-  const schema = z.object({ limit: z.string() }).strict();
-
-  const { authorization } = req.headers;
-  const { data } = token.decodeAuth(authorization);
-
-  try {
-    const { limit } = schema.parse(req.query);
-
-    const chatData = await chatModel
-      .find({ user: data })
-      .sort({ updatedAt: -1 })
-      .limit(parseInt(limit));
-
-    res.send({ chatData: chatData });
-  } catch {
-    return res.status(400).send({ error: "Missing required fields" });
-  }
-});
-
 routes.get("/total-amount", async (req, res) => {
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
