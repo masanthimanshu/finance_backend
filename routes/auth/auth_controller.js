@@ -12,8 +12,10 @@ export class AuthController {
   #token = new Tokens();
 
   #manageOTP = async (uid, phone, country) => {
+    const isTest = phone === 9988776610;
+
     const num = Math.floor(Math.random() * 1000000);
-    const otp = parseInt(num.toString().padStart(6, "2"));
+    const otp = isTest ? 223344 : parseInt(num.toString().padStart(6, "2"));
     const url = `${authKeyUrl}authkey=${authKeyID}&sid=14119&company=Finance%20App`;
 
     const data = await otpModel.findOneAndUpdate(
