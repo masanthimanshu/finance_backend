@@ -27,12 +27,12 @@ routes.post("/phone", (req, res) => {
   }
 });
 
-routes.post("/verify-phone", (req, res) => {
+routes.post("/verify-otp", (req, res) => {
   const schema = z.object({ otp: z.number(), verId: z.string() }).strict();
 
   try {
     schema.parse(req.body);
-    controller.verifyPhone(res, req.body);
+    controller.verifyOtp(res, req.body);
   } catch {
     return res.status(400).send({ error: "Missing required fields" });
   }

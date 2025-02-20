@@ -1,5 +1,5 @@
-import { getRequest } from "../../network/requests.js";
 import { userModel } from "../../database/user_model.js";
+import { getRequest } from "../../network/requests.js";
 import { otpModel } from "../../database/otp_model.js";
 import { OtpVerId } from "../../utils/otp_ver_id.js";
 import { Tokens } from "../../utils/tokens.js";
@@ -24,11 +24,14 @@ export class AuthController {
       { new: true, upsert: true }
     );
 
+    const res = this.#verID.generateVerId(data._id);
+
+    if (isTest) return res;
+
     await getRequest(
       `${url}&country_code=${country}&mobile=${phone}&otp=${otp}`
     );
 
-    const res = this.#verID.generateVerId(data._id);
     return res;
   };
 
@@ -57,6 +60,8 @@ export class AuthController {
         );
 
         res.send({ status: "Success", verId });
+      } else if (!userData.isActive) {
+        res.send({ status: "User account is deactivated" });
       } else {
         const verId = await this.#manageOTP(
           userData._id.toString(),
@@ -71,7 +76,7 @@ export class AuthController {
     }
   };
 
-  verifyPhone = async (res = Response, data) => {
+  verifyOtp = async (res = Response, data) => {
     if (this.#verID.verifyVerId(data.verId)) {
       const verData = this.#verID.decodeVerId(data.verId);
 

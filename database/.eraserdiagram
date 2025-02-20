@@ -5,7 +5,22 @@ user [icon: user, color: teal] {
     name string
     code string
     phone number
+    isActive boolean
     isVerified boolean
+}
+
+profile [icon: data, color: purple] {
+    id string pk
+    user string
+    income number
+    balance number
+    investment array
+}
+
+investment [icon: money, color: purple] {
+    id string pk
+    type string
+    amount number
 }
 
 otp [icon: code, color: green] {
@@ -14,7 +29,7 @@ otp [icon: code, color: green] {
     value int
 }
 
-chat [icon: ticket, color: navy] {
+transaction [icon: ticket, color: navy] {
     id string pk
     input string
     user string
@@ -25,4 +40,7 @@ chat [icon: ticket, color: navy] {
 }
 
 user.id <> otp.user
-chat.user <> user.id
+user.id <> transaction.user
+
+profile.user <> user.id
+profile.investment <> investment
