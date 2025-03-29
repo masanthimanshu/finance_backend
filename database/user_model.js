@@ -1,7 +1,6 @@
 import { Schema, model } from "mongoose";
 
 const schema = new Schema({
-  name: { type: String, default: "User" },
   isActive: { type: Boolean, default: true },
   isVerified: { type: Boolean, default: false },
   code: { type: String, required: [true, "Country code is required"] },

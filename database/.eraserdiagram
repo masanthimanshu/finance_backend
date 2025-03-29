@@ -2,7 +2,6 @@ entity-relationship-diagram
 
 user [icon: user, color: teal] {
     id string pk
-    name string
     code string
     phone number
     isActive boolean
@@ -11,6 +10,7 @@ user [icon: user, color: teal] {
 
 profile [icon: data, color: purple] {
     id string pk
+    name string
     user string
     income number
     balance number

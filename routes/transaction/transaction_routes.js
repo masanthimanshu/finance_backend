@@ -8,7 +8,7 @@ const token = new Tokens();
 export const routes = Router();
 const controller = new TransactionController();
 
-routes.post("/add", (req, res) => {
+routes.post("/add-transaction", (req, res) => {
   const schema = z.object({ input: z.string() }).strict();
 
   const { authorization } = req.headers;
@@ -22,7 +22,7 @@ routes.post("/add", (req, res) => {
   }
 });
 
-routes.get("/read", async (req, res) => {
+routes.get("/read-transaction", async (req, res) => {
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
 
@@ -33,14 +33,14 @@ routes.get("/read", async (req, res) => {
   res.send({ chatData: chatData });
 });
 
-routes.get("/total", async (req, res) => {
+routes.get("/total-amount", async (req, res) => {
   const { authorization } = req.headers;
   const { data } = token.decodeAuth(authorization);
 
   controller.totalAmount(res, data);
 });
 
-routes.post("/delete", async (req, res) => {
+routes.post("/delete-transaction", async (req, res) => {
   const schema = z.object({ chatId: z.string() }).strict();
 
   try {

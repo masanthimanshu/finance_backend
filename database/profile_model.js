@@ -9,8 +9,9 @@ const schema = new Schema({
     required: [true, "User Id is required"],
   },
 
-  investment: investmentSchema,
+  investment: [investmentSchema],
 
+  name: { type: String, required: [true, "Name is required"] },
   income: { type: Number, required: [true, "Income is required"] },
   balance: { type: Number, required: [true, "Balance is required"] },
 });
