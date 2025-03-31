@@ -40,7 +40,7 @@ routes.get("/total-amount", async (req, res) => {
   controller.totalAmount(res, data);
 });
 
-routes.post("/delete-transaction", async (req, res) => {
+routes.post("/delete", async (req, res) => {
   const schema = z.object({ chatId: z.string() }).strict();
 
   try {

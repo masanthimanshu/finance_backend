@@ -8,21 +8,6 @@ user [icon: user, color: teal] {
     isVerified boolean
 }
 
-profile [icon: data, color: purple] {
-    id string pk
-    name string
-    user string
-    income number
-    balance number
-    investment array
-}
-
-investment [icon: money, color: purple] {
-    id string pk
-    type string
-    amount number
-}
-
 otp [icon: code, color: green] {
     id string pk
     user string
@@ -41,6 +26,3 @@ transaction [icon: ticket, color: navy] {
 
 user.id <> otp.user
 user.id <> transaction.user
-
-profile.user <> user.id
-profile.investment <> investment

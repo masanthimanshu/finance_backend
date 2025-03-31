@@ -22,7 +22,6 @@ app.get("/secure/verify", (req, res) => res.send({ message: "User is valid" }));
 
 app.use("/jwt", route.jwtRoutes);
 app.use("/account/auth", route.authRoutes);
-app.use("/secure/profile", route.profileRoutes);
 app.use("/secure/transaction", route.transaction);
 
 app.listen(process.env.PORT, () => console.log("App Started"));
